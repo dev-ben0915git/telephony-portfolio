@@ -8,9 +8,10 @@ import { TechCard } from '@/components/ui/TechCard';
 import { SkillBar } from '@/components/ui/SkillBar';
 import { CounterStat } from '@/components/ui/CounterStat';
 import { FadeUp } from '@/components/ui/FadeUp';
+import { SkillTabs } from '@/components/ui/SkillTabs';
 import { SipSequenceDiagram } from '@/components/effects/SipSequenceDiagram';
 import dynamic from 'next/dynamic';
-import { ArrowRight, BookOpen, FolderKanban, FileText } from 'lucide-react';
+import { ArrowRight, BookOpen, FolderKanban, FileText, ChevronRight } from 'lucide-react';
 
 const CellTowerLazy = dynamic(() => import('@/components/effects/CellTowerLazy'), {
   ssr: false,
@@ -22,11 +23,11 @@ const CellTowerLazy = dynamic(() => import('@/components/effects/CellTowerLazy')
 export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      {/* Hero */}
-      <section className="relative py-8 sm:py-12 lg:py-20">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.25fr_0.85fr] lg:gap-10">
+      {/* 首屏 */}
+      <section className="relative py-6 sm:py-10 lg:py-16">
+        <div className="grid items-center gap-6 lg:grid-cols-[1.25fr_0.85fr] lg:gap-10">
           <div>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
               <span className="relative inline-flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
@@ -45,43 +46,15 @@ export default function HomePage() {
               />
             </h1>
 
-            <div className="mt-5 max-w-2xl rounded-2xl border border-bg-line/80 bg-bg-card/45 p-3.5 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur sm:p-5">
-              <p className="text-[15px] leading-8 text-slate-300 sm:text-base sm:leading-8">
-                <span className="font-medium text-white">6 年 Android Telephony 开发</span>
-                <span className="mx-2 text-accent/70">/</span>
-                深耕搜网、数据业务、通话管理与 ROM 升级交付，具备从
-                <span className="mx-1 text-accent">RIL 到 Framework</span>
-                的全链路定位与量产闭环能力。
-              </p>
+            <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-300 sm:text-base sm:leading-7">
+              <span className="font-medium text-white">6 年 Android Telephony 开发</span>
+              <span className="mx-2 text-accent/70">/</span>
+              深耕搜网、数据业务、通话管理与 ROM 升级交付，具备从
+              <span className="mx-1 text-accent">RIL 到 Framework</span>
+              的全链路定位与量产闭环能力。
+            </p>
 
-              <div className="mt-4 grid gap-2 text-xs text-slate-400 min-[520px]:grid-cols-3">
-                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-2.5 py-2 sm:px-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
-                    clients
-                  </div>
-                  <div className="mt-1 text-[11px] leading-5 text-slate-200 sm:text-xs">
-                    华为 / 荣耀 / OPPO / 诺基亚
-                  </div>
-                </div>
-                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-2.5 py-2 sm:px-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
-                    versions
-                  </div>
-                  <div className="mt-1 text-[11px] leading-5 text-slate-200 sm:text-xs">
-                    Android R / S / T / U / W
-                  </div>
-                </div>
-                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-2.5 py-2 sm:px-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
-                    delivery
-                  </div>
-                  <div className="mt-1 text-[11px] leading-5 text-slate-200 sm:text-xs">
-                    CTS / 运营商认证 / 量产闭环
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            {/* 行动入口 */}
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <Link href="/projects" className="btn-primary">
                 <FolderKanban className="h-4 w-4" /> 项目经历
@@ -89,17 +62,18 @@ export default function HomePage() {
               <Link href="/blog" className="btn-ghost">
                 <BookOpen className="h-4 w-4" /> 技术博客
               </Link>
-              <Link href="/resume" className="btn-ghost">
+              <Link href="/resume" className="btn-ghost hidden sm:inline-flex">
                 <FileText className="h-4 w-4" /> 简历下载
               </Link>
             </div>
 
+            {/* 核心技术栈 */}
             <div className="mt-5 max-w-2xl">
               <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-slate-500">
                 <span className="h-px w-8 bg-accent/40" />
                 core stack
               </div>
-              <div className="flex flex-wrap gap-2.5 text-xs">
+              <div className="flex flex-wrap gap-2 text-xs">
                 <span className="core-skill-chip core-skill-chip-accent font-mono tracking-wide">
                   C / C++
                 </span>
@@ -117,22 +91,46 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Signal / throughput mini metrics */}
-        <div className="mt-8 grid grid-cols-2 gap-3 lg:mt-10 sm:grid-cols-4">
+        {/* 量化数据 */}
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:mt-8">
           {siteConfig.stats.map((s) => (
             <CounterStat key={s.label} label={s.label} value={s.value} hint={s.hint} />
           ))}
         </div>
       </section>
 
-      {/* Skills snapshot */}
-      <section className="py-10">
+      {/* 快速入口条 */}
+      <section className="border-y border-bg-line/60 py-4">
+        <div className="flex flex-wrap items-center gap-3 text-sm">
+          <span className="text-xs uppercase tracking-[0.2em] text-slate-500">快速入口</span>
+          <Link href="/projects" className="inline-flex items-center gap-1 text-slate-300 transition hover:text-accent">
+            <ChevronRight className="h-3.5 w-3.5" /> 项目经历
+          </Link>
+          <Link href="/blog" className="inline-flex items-center gap-1 text-slate-300 transition hover:text-accent">
+            <ChevronRight className="h-3.5 w-3.5" /> 技术博客
+          </Link>
+          <Link href="/about" className="inline-flex items-center gap-1 text-slate-300 transition hover:text-accent">
+            <ChevronRight className="h-3.5 w-3.5" /> 关于我
+          </Link>
+          <Link href="/resume" className="inline-flex items-center gap-1 text-slate-300 transition hover:text-accent sm:hidden">
+            <ChevronRight className="h-3.5 w-3.5" /> 简历下载
+          </Link>
+        </div>
+      </section>
+
+      {/* 技能快照 */}
+      <section className="py-8 sm:py-10">
         <SectionHeader
           eyebrow="skills snapshot"
           title="四大方向 · 技能雷达"
           description="搜网、数据业务、通话管理、版本交付与运营商认证。以下为结合简历经历的能力快照。"
         />
-        <div className="grid gap-4 md:grid-cols-2">
+        {/* 移动端：Tab 折叠 */}
+        <div className="md:hidden">
+          <SkillTabs />
+        </div>
+        {/* 桌面端：网格展示 */}
+        <div className="hidden grid-cols-2 gap-4 md:grid">
           {skills.map((group, idx) => (
             <FadeUp key={group.key} delay={idx * 0.05}>
               <TechCard title={group.title} subtitle={group.description}>
@@ -147,8 +145,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SIP sequence teaser */}
-      <section className="py-10">
+      {/* SIP 时序示意 */}
+      <section className="py-8 sm:py-10">
         <SectionHeader
           eyebrow="sip sequence"
           title="IMS 注册 · 401/AKA 握手"
@@ -161,8 +159,8 @@ export default function HomePage() {
         </FadeUp>
       </section>
 
-      {/* 3D tower */}
-      <section className="py-10">
+      {/* 基站可视化 */}
+      <section className="py-8 sm:py-10">
         <SectionHeader
           eyebrow="infrastructure"
           title="BTS / gNB · 蜂窝基站可视化"
@@ -173,8 +171,8 @@ export default function HomePage() {
         </FadeUp>
       </section>
 
-      {/* Featured posts + CTAs */}
-      <section className="grid gap-6 py-10 md:grid-cols-2">
+      {/* 内容入口 */}
+      <section className="grid gap-6 py-8 sm:py-10 md:grid-cols-2">
         <FadeUp>
           <Link href="/blog" className="tech-card group block h-full">
             <div className="flex items-center justify-between">

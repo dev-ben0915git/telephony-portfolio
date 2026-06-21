@@ -295,6 +295,17 @@ body {
   color: #ff8a3d;
 }
 
+/* FadeUp 服务端渲染 / 无 JS 兜底：内容始终可见，动画只做增强 */
+.fade-up-safe {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-up-safe {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* SIP signal SVG draw */
 .sip-signal line {
   stroke-dasharray: 800;
