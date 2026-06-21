@@ -4,7 +4,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { TechCard } from '@/components/ui/TechCard';
 import { SkillBar } from '@/components/ui/SkillBar';
 import { FadeUp } from '@/components/ui/FadeUp';
-import { Mail, Github, MapPin, Phone } from 'lucide-react';
+import { Mail, Github, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,17 +20,25 @@ export default function AboutPage() {
         title={siteConfig.author.name}
         description={
           <>
-            {siteConfig.author.tagline}。
-            <span className="text-slate-300"> · 求职意向：成都 · Telephony 开发工程师。</span>
+            <span className="flex flex-wrap gap-2 text-sm leading-7 text-slate-400">
+              <span>6 年 Android Telephony 开发</span>
+              <span className="text-accent/60">·</span>
+              <span>搜网 / 数据业务 / 通话管理</span>
+              <span className="text-accent/60">·</span>
+              <span>高通 / MTK / 海思平台适配。</span>
+            </span>
+            <span className="mt-2 flex flex-wrap items-center gap-2 text-sm text-slate-300">
+              <span className="rounded-full border border-accent/20 bg-accent/[0.04] px-2.5 py-1 text-accent">
+                求职意向
+              </span>
+              <span>Telephony 开发工程师。</span>
+            </span>
           </>
         }
       />
 
       {/* Contact row */}
       <div className="mb-10 flex flex-wrap items-center gap-3 text-sm">
-        <span className="chip">
-          <MapPin className="h-3 w-3" /> {siteConfig.author.location}
-        </span>
         <a href={`mailto:${siteConfig.author.email}`} className="chip hover:border-accent/60 hover:text-accent">
           <Mail className="h-3 w-3" /> {siteConfig.author.email}
         </a>
@@ -124,7 +132,7 @@ export default function AboutPage() {
         <SectionHeader
           eyebrow="looking for"
           title="求职意向"
-          description="意向城市成都，聚焦 Android Telephony 开发、通信框架适配与 ROM 升级交付。"
+          description="聚焦 Android Telephony 开发、通信框架适配与 ROM 升级交付。"
         />
         <div className="grid gap-4 md:grid-cols-3">
           {[

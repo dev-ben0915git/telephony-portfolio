@@ -50,7 +50,7 @@ export default function ResumePage() {
               <div className="mt-2 grid gap-2 text-slate-300">
                 <div>姓名：{siteConfig.author.name}</div>
                 <div>岗位：Telephony 开发工程师</div>
-                <div>地点：{siteConfig.author.location}</div>
+                {siteConfig.author.location && <div>地点：{siteConfig.author.location}</div>}
                 <div>电话：{siteConfig.author.phone}</div>
                 <div>邮箱：{siteConfig.author.email}</div>
               </div>
@@ -109,10 +109,12 @@ export default function ResumePage() {
                   GitHub
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-accent" />
-                <span>{siteConfig.author.location}</span>
-              </li>
+              {siteConfig.author.location && (
+                <li className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-accent" />
+                  <span>{siteConfig.author.location}</span>
+                </li>
+              )}
             </ul>
           </TechCard>
 

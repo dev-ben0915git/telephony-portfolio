@@ -66,7 +66,9 @@ export function Footer() {
               </a>
               </li>
             )}
-            <li className="text-slate-500">{siteConfig.author.location}</li>
+            {siteConfig.author.location && (
+              <li className="text-slate-500">{siteConfig.author.location}</li>
+            )}
           </ul>
         </div>
       </div>
