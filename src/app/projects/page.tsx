@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '项目实战',
+  title: '项目经历',
   description: `Telephony 方向真实优化案例 · STAR 结构 · 数据对比 · 源码片段。`,
 };
 
@@ -16,7 +16,7 @@ export default function ProjectsIndexPage() {
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <SectionHeader
         eyebrow="projects"
-        title="项目实战 · STAR 结构"
+        title="项目经历 · STAR 结构"
         description="Situation → Task → Action → Result。每篇都附带量化指标与源码片段。"
       />
 

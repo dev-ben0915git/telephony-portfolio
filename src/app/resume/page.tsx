@@ -37,7 +37,7 @@ export default function ResumePage() {
           <Github className="h-4 w-4" /> 站点源码 <ExternalLink className="h-3 w-3" />
         </a>
         <Link href="/projects" className="inline-flex items-center gap-2 rounded-lg border border-bg-line bg-bg-card/60 px-4 py-2 text-sm text-slate-200 transition hover:border-accent/50 hover:text-accent">
-          查看项目实战
+          查看项目经历
         </Link>
       </div>
 

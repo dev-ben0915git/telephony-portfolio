@@ -45,14 +45,40 @@ export default function HomePage() {
               />
             </h1>
 
-            <p className="mt-5 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              {siteConfig.author.tagline}。长期支撑华为、荣耀、OPPO、诺基亚等终端项目，
-              熟悉 Android R/S/T/U/W 多代版本升级、Telephony CTS、运营商认证与量产问题闭环。
-            </p>
+            <div className="mt-6 max-w-2xl rounded-2xl border border-bg-line/80 bg-bg-card/45 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur sm:p-5">
+              <p className="text-[15px] leading-8 text-slate-300 sm:text-base sm:leading-8">
+                <span className="font-medium text-white">6 年 Android Telephony 开发</span>
+                <span className="mx-2 text-accent/70">/</span>
+                深耕搜网、数据业务、通话管理与 ROM 升级交付，具备从
+                <span className="mx-1 text-accent">RIL 到 Framework</span>
+                的全链路定位与量产闭环能力。
+              </p>
+
+              <div className="mt-4 grid gap-2 text-xs text-slate-400 sm:grid-cols-3">
+                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-3 py-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
+                    clients
+                  </div>
+                  <div className="mt-1 text-slate-200">华为 / 荣耀 / OPPO / 诺基亚</div>
+                </div>
+                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-3 py-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
+                    versions
+                  </div>
+                  <div className="mt-1 text-slate-200">Android R / S / T / U / W</div>
+                </div>
+                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-3 py-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
+                    delivery
+                  </div>
+                  <div className="mt-1 text-slate-200">CTS / 运营商认证 / 量产闭环</div>
+                </div>
+              </div>
+            </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link href="/projects" className="btn-primary">
-                <FolderKanban className="h-4 w-4" /> 项目实战
+                <FolderKanban className="h-4 w-4" /> 项目经历
               </Link>
               <Link href="/blog" className="btn-ghost">
                 <BookOpen className="h-4 w-4" /> 技术博客
@@ -62,12 +88,20 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-500">
-              <span className="chip chip-accent">C / C++</span>
-              <span className="chip">Java</span>
-              <span className="chip">Android Framework</span>
-              <span className="chip">TeleService · Telecom</span>
-              <span className="chip">Radio AIDL · Carrier Config</span>
+            <div className="mt-6 max-w-2xl">
+              <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-slate-500">
+                <span className="h-px w-8 bg-accent/40" />
+                core stack
+              </div>
+              <div className="flex flex-wrap gap-2.5 text-xs">
+                <span className="core-skill-chip core-skill-chip-accent font-mono tracking-wide">
+                  C / C++
+                </span>
+                <span className="core-skill-chip font-mono tracking-wide">Java</span>
+                <span className="core-skill-chip">RIL</span>
+                <span className="core-skill-chip">Framework Telephony</span>
+                <span className="core-skill-chip">TeleService-Telecom-Telephony</span>
+              </div>
             </div>
           </div>
 
@@ -160,7 +194,7 @@ export default function HomePage() {
               <div className="text-sm uppercase tracking-[0.3em] text-accent">projects</div>
               <ArrowRight className="h-4 w-4 text-accent transition group-hover:translate-x-1" />
             </div>
-            <div className="mt-2 text-xl font-semibold text-white">项目实战</div>
+            <div className="mt-2 text-xl font-semibold text-white">项目经历</div>
             <div className="mt-2 text-sm leading-6 text-slate-400">
               STAR 结构案例：问题陈述 → 方案 → 行动 → 数据结果，附代码片段与截图。
             </div>

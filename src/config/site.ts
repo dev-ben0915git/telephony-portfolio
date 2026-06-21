@@ -28,7 +28,7 @@ export const siteConfig = {
     { key: 'home', label: '首页', href: '/' },
     { key: 'about', label: '关于我', href: '/about' },
     { key: 'blog', label: '技术博客', href: '/blog' },
-    { key: 'projects', label: '项目实战', href: '/projects' },
+    { key: 'projects', label: '项目经历', href: '/projects' },
     { key: 'resume', label: '简历下载', href: '/resume' },
   ],
   stats: [
