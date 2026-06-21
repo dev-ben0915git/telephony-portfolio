@@ -14,7 +14,7 @@ export const siteConfig = {
     github: 'https://github.com/dev-ben0915git/telephony-portfolio',
     linkedin: '',
     twitter: '',
-    resumeUrl: '/resume/telephony-resume.pdf',
+    resumeUrl: '/telephony-portfolio/resume/telephony-resume.pdf',
     repoUrl: 'https://github.com/dev-ben0915git/telephony-portfolio',
   },
   categories: [
