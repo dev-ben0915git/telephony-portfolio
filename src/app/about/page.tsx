@@ -4,7 +4,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { TechCard } from '@/components/ui/TechCard';
 import { SkillBar } from '@/components/ui/SkillBar';
 import { FadeUp } from '@/components/ui/FadeUp';
-import { Mail, Github, Linkedin, MapPin } from 'lucide-react';
+import { Mail, Github, MapPin, Phone } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function AboutPage() {
         description={
           <>
             {siteConfig.author.tagline}。
-            <span className="text-slate-300"> · 开放 远程 / 国内 Telephony / Modem 方向机会。</span>
+            <span className="text-slate-300"> · 求职意向：成都 · Telephony 开发工程师。</span>
           </>
         }
       />
@@ -34,11 +34,11 @@ export default function AboutPage() {
         <a href={`mailto:${siteConfig.author.email}`} className="chip hover:border-accent/60 hover:text-accent">
           <Mail className="h-3 w-3" /> {siteConfig.author.email}
         </a>
+        <a href={`tel:${siteConfig.author.phone}`} className="chip hover:border-accent/60 hover:text-accent">
+          <Phone className="h-3 w-3" /> {siteConfig.author.phone}
+        </a>
         <a href={siteConfig.author.github} target="_blank" rel="noreferrer" className="chip hover:border-accent/60 hover:text-accent">
           <Github className="h-3 w-3" /> GitHub
-        </a>
-        <a href={siteConfig.author.linkedin} target="_blank" rel="noreferrer" className="chip hover:border-accent/60 hover:text-accent">
-          <Linkedin className="h-3 w-3" /> LinkedIn
         </a>
       </div>
 
@@ -103,12 +103,12 @@ export default function AboutPage() {
         />
         <div className="grid gap-4 sm:grid-cols-3">
           {[
-            { k: '5G 搜网耗时', v: '首搜耗时 28s → 10.6s', d: '自研搜网仲裁器 + 频段偏好队列' },
-            { k: 'IMS 接通率', v: '97.1% → 99.6%', d: 'SIP UA 状态机重构 + 408 分级重试' },
-            { k: 'Modem Crash 归因', v: '人工 → 自动化', d: '处理耗时分钟级，Top3 重复问题清零' },
-            { k: '双卡 PDP 调度', v: '切片切换 280ms', d: 'MTK RIL 自定义 Request + 路由表' },
-            { k: '项目交付', v: '12+ 产品线', d: '海外运营商 IOT 认证、MTK & 高通双平台' },
-            { k: '团队建设', v: 'Telephony 回归流水线', d: '480+ 用例覆盖，CI 每日运行' },
+            { k: '旗舰机型交付', v: '12+ 机型', d: 'Android S 到 W 多代 ROM 升级，全部按时交付零延误' },
+            { k: '客户需求闭环', v: '100+ 反馈', d: '担任荣耀搜网与 Phone 稳定性对外唯一技术接口人' },
+            { k: 'Radio AIDL 升级', v: '30+ 接口', d: '完成原有接口逻辑梳理与兼容性适配' },
+            { k: '高优故障攻坚', v: '15+ / 20+', d: '解决搜网、数据业务、Phone 稳定性核心问题' },
+            { k: '通话模块维护', v: '30+ 故障', d: '覆盖 TeleService、Telecom、InCallUI 等通话链路' },
+            { k: '交付质量', v: '100%', d: '客户定制需求交付通过率与 OPPO 需求满足率均达 100%' },
           ].map((h, idx) => (
             <FadeUp key={h.k} delay={idx * 0.03}>
               <TechCard title={h.k} subtitle={h.v}>
@@ -124,13 +124,13 @@ export default function AboutPage() {
         <SectionHeader
           eyebrow="looking for"
           title="求职意向"
-          description="以下方向均开放：远程 / 国内 均可。欢迎通过邮箱或 LinkedIn 进一步沟通。"
+          description="意向城市成都，聚焦 Android Telephony 开发、通信框架适配与 ROM 升级交付。"
         />
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            { t: 'Senior Telephony Engineer', d: 'Android Telephony Framework、RIL 定制、IMS/VoLTE/VoNR' },
-            { t: 'Modem / Protocol Engineer', d: 'Modem 协议、NAS/AS、数据包路径、异常归因与自动化' },
-            { t: '5G / 6G R&D', d: '面向下一代无线的研究与原型实现，结合 RAN 与 Core' },
+            { t: 'Telephony 开发工程师', d: '搜网、数据业务、通话管理、短彩信、TelephonyProvider、SIM 卡账户' },
+            { t: 'Android Framework 工程师', d: '高通 / MTK / 海思平台适配，AOSP Framework 定制与版本升级' },
+            { t: '通信认证 / 交付工程师', d: 'Telephony CTS、国内运营商送测、海外 Carrier Config 与入网认证适配' },
           ].map((c) => (
             <TechCard key={c.t} title={c.t}>
               <p className="text-sm leading-6 text-slate-400">{c.d}</p>

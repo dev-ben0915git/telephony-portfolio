@@ -31,14 +31,14 @@ export default function HomePage() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
-              Senior Telephony Engineer · 求职中
+              Telephony 开发工程师 · 成都机会
             </div>
 
             <h1 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
               你好，我是 <span className="glow-text text-accent">{siteConfig.author.name}</span>
               <br />
               <DecoderText
-                text={`RIL / IMS / 搜网 / Modem 优化`}
+                text={`搜网 / 数据业务 / 通话管理 / ROM 升级`}
                 className="block text-xl text-slate-200 sm:text-2xl md:text-3xl"
                 speed={35}
                 startDelay={200}
@@ -46,8 +46,8 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-5 max-w-xl text-sm leading-7 text-slate-400 sm:text-base">
-              {siteConfig.author.tagline}。擅长高通 QCRIL / MTK RIL 深度定制、IMS 注册与
-              VoNR 接通率治理、搜网策略重构与 Modem 异常归因。 注重工程化落地与量化结果。
+              {siteConfig.author.tagline}。长期支撑华为、荣耀、OPPO、诺基亚等终端项目，
+              熟悉 Android R/S/T/U/W 多代版本升级、Telephony CTS、运营商认证与量产问题闭环。
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -66,8 +66,8 @@ export default function HomePage() {
               <span className="chip chip-accent">C / C++</span>
               <span className="chip">Java</span>
               <span className="chip">Android Framework</span>
-              <span className="chip">QXDM · Wireshark</span>
-              <span className="chip">QMI · AT · SIP</span>
+              <span className="chip">TeleService · Telecom</span>
+              <span className="chip">Radio AIDL · Carrier Config</span>
             </div>
           </div>
 
@@ -90,7 +90,7 @@ export default function HomePage() {
         <SectionHeader
           eyebrow="skills snapshot"
           title="四大方向 · 技能雷达"
-          description="RIL/QMI、IMS/VoLTE、搜网策略与网络稳定性、工程化工具链。以下为自评熟练度快照。"
+          description="搜网、数据业务、通话管理、版本交付与运营商认证。以下为结合简历经历的能力快照。"
         />
         <div className="grid gap-4 md:grid-cols-2">
           {skills.map((group, idx) => (
@@ -143,10 +143,10 @@ export default function HomePage() {
             </div>
             <div className="mt-2 text-xl font-semibold text-white">技术博客</div>
             <div className="mt-2 text-sm leading-6 text-slate-400">
-              QCRIL、MTK RIL、IMS/VoLTE、搜网排障、Crash 复盘五大分类，带代码与抓包示意。
+              搜网、数据业务、通话管理、Radio AIDL、运营商认证五大分类，沉淀 ROM 升级与量产问题闭环经验。
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
-              {['QCRIL', 'MTK RIL', 'IMS', '搜网', 'Crash'].map((t) => (
+              {['搜网', '数据业务', '通话管理', 'Radio AIDL', '认证'].map((t) => (
                 <span key={t} className="chip chip-accent">
                   {t}
                 </span>
@@ -165,9 +165,9 @@ export default function HomePage() {
               STAR 结构案例：问题陈述 → 方案 → 行动 → 数据结果，附代码片段与截图。
             </div>
             <ul className="mt-3 space-y-1 text-sm text-slate-300">
-              <li>· 5G 搜网耗时 -62%</li>
-              <li>· VoLTE 接通率 99.6%</li>
-              <li>· Modem Crash 自动归因</li>
+              <li>· 12+ 旗舰机型跨代 ROM 升级</li>
+              <li>· 100+ 客户需求与问题反馈闭环</li>
+              <li>· Radio AIDL 30+ 接口兼容适配</li>
             </ul>
           </Link>
         </FadeUp>

@@ -1,4 +1,5 @@
 import { siteConfig } from '@/config/site';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -21,12 +22,12 @@ export function Footer() {
           <ul className="mt-3 space-y-1.5 text-sm">
             {siteConfig.nav.map((item) => (
               <li key={item.key}>
-                <a
+                <Link
                   href={item.href}
                   className="text-slate-400 transition hover:text-accent"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -53,7 +54,8 @@ export function Footer() {
                 GitHub
               </a>
             </li>
-            <li>
+            {siteConfig.author.linkedin && (
+              <li>
               <a
                 href={siteConfig.author.linkedin}
                 target="_blank"
@@ -62,7 +64,8 @@ export function Footer() {
               >
                 LinkedIn
               </a>
-            </li>
+              </li>
+            )}
             <li className="text-slate-500">{siteConfig.author.location}</li>
           </ul>
         </div>
