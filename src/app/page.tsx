@@ -23,8 +23,8 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
       {/* Hero */}
-      <section className="relative py-14 sm:py-20">
-        <div className="grid items-center gap-10 md:grid-cols-[1.3fr_1fr]">
+      <section className="relative py-8 sm:py-12 lg:py-20">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.25fr_0.85fr] lg:gap-10">
           <div>
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
               <span className="relative inline-flex h-1.5 w-1.5">
@@ -45,7 +45,7 @@ export default function HomePage() {
               />
             </h1>
 
-            <div className="mt-6 max-w-2xl rounded-2xl border border-bg-line/80 bg-bg-card/45 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur sm:p-5">
+            <div className="mt-5 max-w-2xl rounded-2xl border border-bg-line/80 bg-bg-card/45 p-3.5 shadow-[0_18px_60px_rgba(0,0,0,0.18)] backdrop-blur sm:p-5">
               <p className="text-[15px] leading-8 text-slate-300 sm:text-base sm:leading-8">
                 <span className="font-medium text-white">6 年 Android Telephony 开发</span>
                 <span className="mx-2 text-accent/70">/</span>
@@ -54,29 +54,35 @@ export default function HomePage() {
                 的全链路定位与量产闭环能力。
               </p>
 
-              <div className="mt-4 grid gap-2 text-xs text-slate-400 sm:grid-cols-3">
-                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-3 py-2">
+              <div className="mt-4 grid gap-2 text-xs text-slate-400 min-[520px]:grid-cols-3">
+                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-2.5 py-2 sm:px-3">
                   <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
                     clients
                   </div>
-                  <div className="mt-1 text-slate-200">华为 / 荣耀 / OPPO / 诺基亚</div>
+                  <div className="mt-1 text-[11px] leading-5 text-slate-200 sm:text-xs">
+                    华为 / 荣耀 / OPPO / 诺基亚
+                  </div>
                 </div>
-                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-3 py-2">
+                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-2.5 py-2 sm:px-3">
                   <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
                     versions
                   </div>
-                  <div className="mt-1 text-slate-200">Android R / S / T / U / W</div>
+                  <div className="mt-1 text-[11px] leading-5 text-slate-200 sm:text-xs">
+                    Android R / S / T / U / W
+                  </div>
                 </div>
-                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-3 py-2">
+                <div className="rounded-xl border border-accent/15 bg-accent/[0.04] px-2.5 py-2 sm:px-3">
                   <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent/70">
                     delivery
                   </div>
-                  <div className="mt-1 text-slate-200">CTS / 运营商认证 / 量产闭环</div>
+                  <div className="mt-1 text-[11px] leading-5 text-slate-200 sm:text-xs">
+                    CTS / 运营商认证 / 量产闭环
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               <Link href="/projects" className="btn-primary">
                 <FolderKanban className="h-4 w-4" /> 项目经历
               </Link>
@@ -88,7 +94,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-6 max-w-2xl">
+            <div className="mt-5 max-w-2xl">
               <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-slate-500">
                 <span className="h-px w-8 bg-accent/40" />
                 core stack
@@ -105,14 +111,14 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative flex justify-center">
+          <div className="relative hidden justify-center lg:flex">
             <CallPulseHero />
             <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-accent/5 blur-3xl" />
           </div>
         </div>
 
         {/* Signal / throughput mini metrics */}
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 gap-3 lg:mt-10 sm:grid-cols-4">
           {siteConfig.stats.map((s) => (
             <CounterStat key={s.label} label={s.label} value={s.value} hint={s.hint} />
           ))}
