@@ -17,7 +17,7 @@ export function DecoderText({
   speed = 28,
   startDelay = 120,
 }: DecoderTextProps) {
-  const [display, setDisplay] = useState(text);
+  const [display, setDisplay] = useState(() => ' '.repeat(text.length));
   const [reducedMotion, setReducedMotion] = useState(false);
   useEffect(() => {
     const mql = window.matchMedia('(prefers-reduced-motion: reduce)');

@@ -81,13 +81,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       />
-      <head>
+      <body className="min-h-screen bg-bg-base text-slate-100 antialiased">
+        {/* JSON-LD structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="min-h-screen bg-bg-base text-slate-100 antialiased">
         <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
