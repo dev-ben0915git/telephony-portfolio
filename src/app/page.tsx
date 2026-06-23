@@ -2,14 +2,14 @@ import Link from 'next/link';
 import { siteConfig } from '@/config/site';
 import { skills } from '@/data/portfolio';
 import { DecoderText } from '@/components/effects/DecoderText';
-import { CallPulseHero } from '@/components/effects/CallPulseHero';
+import { NetworkSearchHero } from '@/components/effects/NetworkSearchHero';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { TechCard } from '@/components/ui/TechCard';
 import { SkillBar } from '@/components/ui/SkillBar';
 import { CounterStat } from '@/components/ui/CounterStat';
 import { FadeUp } from '@/components/ui/FadeUp';
 import { SkillTabs } from '@/components/ui/SkillTabs';
-import { SipSequenceDiagram } from '@/components/effects/SipSequenceDiagram';
+import { AttachSequenceDiagram } from '@/components/effects/AttachSequenceDiagram';
 import dynamic from 'next/dynamic';
 import { ArrowRight, BookOpen, FolderKanban, FileText, ChevronRight } from 'lucide-react';
 
@@ -86,7 +86,7 @@ export default function HomePage() {
           </div>
 
           <div className="relative hidden justify-center lg:flex">
-            <CallPulseHero />
+            <NetworkSearchHero />
             <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-accent/5 blur-3xl" />
           </div>
         </div>
@@ -148,13 +148,13 @@ export default function HomePage() {
       {/* SIP 时序示意 */}
       <section className="py-8 sm:py-10">
         <SectionHeader
-          eyebrow="sip sequence"
-          title="IMS 注册 · 401/AKA 握手"
-          description="UE ↔ P-CSCF ↔ IMS 核心网的注册时序示意，点击在技术博客查看完整抓包分析。"
+          eyebrow="attach sequence"
+          title="LTE Attach · 随机接入与承载建立"
+          description="UE ↔ eNB ↔ EPC 的 Attach 时序示意，点击在技术博客查看完整信令分析。"
         />
         <FadeUp>
           <div className="tech-card">
-            <SipSequenceDiagram />
+            <AttachSequenceDiagram />
           </div>
         </FadeUp>
       </section>
