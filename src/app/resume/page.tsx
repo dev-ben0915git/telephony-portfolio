@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Github, MapPin, FileDown, ExternalLink, Phone } from 'lucide-react';
+import { Mail, Github, MapPin, FileDown, ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { TechCard } from '@/components/ui/TechCard';
@@ -51,7 +51,6 @@ export default function ResumePage() {
                 <div>姓名：{siteConfig.author.name}</div>
                 <div>岗位：Telephony 开发工程师</div>
                 {siteConfig.author.location && <div>地点：{siteConfig.author.location}</div>}
-                <div>电话：{siteConfig.author.phone}</div>
                 <div>邮箱：{siteConfig.author.email}</div>
               </div>
             </div>
@@ -98,12 +97,6 @@ export default function ResumePage() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-accent" />
-                <a href={`tel:${siteConfig.author.phone}`} className="hover:text-accent">
-                  {siteConfig.author.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
                 <Github className="h-4 w-4 text-accent" />
                 <a href={siteConfig.author.github} target="_blank" rel="noreferrer" className="hover:text-accent">
                   GitHub
@@ -118,13 +111,7 @@ export default function ResumePage() {
             </ul>
           </TechCard>
 
-          <TechCard title="PDF 简历说明">
-            <p className="text-sm leading-6 text-slate-400">
-              当前下载文件已替换为上传的李奔 Telephony 工程师简历，链接由
-              <code className="mx-1 text-accent">site.ts</code>
-              统一配置。
-            </p>
-          </TechCard>
+
         </div>
       </div>
 

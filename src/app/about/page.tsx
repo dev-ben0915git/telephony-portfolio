@@ -4,7 +4,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { TechCard } from '@/components/ui/TechCard';
 import { SkillBar } from '@/components/ui/SkillBar';
 import { FadeUp } from '@/components/ui/FadeUp';
-import { Mail, Github, Phone } from 'lucide-react';
+import { Mail, Github } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -41,9 +41,6 @@ export default function AboutPage() {
       <div className="mb-10 flex flex-wrap items-center gap-3 text-sm">
         <a href={`mailto:${siteConfig.author.email}`} className="chip hover:border-accent/60 hover:text-accent">
           <Mail className="h-3 w-3" /> {siteConfig.author.email}
-        </a>
-        <a href={`tel:${siteConfig.author.phone}`} className="chip hover:border-accent/60 hover:text-accent">
-          <Phone className="h-3 w-3" /> {siteConfig.author.phone}
         </a>
         <a href={siteConfig.author.github} target="_blank" rel="noreferrer" className="chip hover:border-accent/60 hover:text-accent">
           <Github className="h-3 w-3" /> GitHub

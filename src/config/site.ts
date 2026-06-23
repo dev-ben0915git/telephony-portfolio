@@ -9,7 +9,6 @@ export const siteConfig = {
     role: 'Telephony 开发工程师',
     tagline: '6 年 Android Telephony 开发 · 搜网 / 数据业务 / 通话管理 · 高通 / MTK / 海思平台适配',
     location: '',
-    phone: '17354358970',
     email: '2715605738@qq.com',
     github: 'https://github.com/dev-ben0915git/telephony-portfolio',
     linkedin: '',
