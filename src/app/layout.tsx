@@ -3,6 +3,27 @@ import '@/styles/globals.css';
 import { siteConfig } from '@/config/site';
 import { LayoutShell } from '@/components/layout/LayoutShell';
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: siteConfig.author.name,
+  url: siteConfig.url,
+  email: siteConfig.author.email,
+  jobTitle: 'Android Telephony 开发工程师',
+  description:
+    '6 年 Android Telephony 开发，深耕搜网、数据业务、通话管理与 ROM 升级交付。',
+  sameAs: [siteConfig.author.github],
+  knowsAbout: [
+    'Android Telephony',
+    '搜网',
+    '数据业务',
+    '通话管理',
+    'RIL',
+    'Framework',
+    'ROM 升级',
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -60,6 +81,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       />
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen bg-bg-base text-slate-100 antialiased">
         <LayoutShell>{children}</LayoutShell>
       </body>

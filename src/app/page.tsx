@@ -35,33 +35,7 @@ const CellTowerLazy = dynamic(() => import('@/components/effects/CellTowerLazy')
 });
 
 export default function HomePage() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: siteConfig.author.name,
-    url: siteConfig.url,
-    email: siteConfig.author.email,
-    jobTitle: 'Android Telephony 开发工程师',
-    description:
-      '6 年 Android Telephony 开发，深耕搜网、数据业务、通话管理与 ROM 升级交付。',
-    sameAs: [siteConfig.author.github],
-    knowsAbout: [
-      'Android Telephony',
-      '搜网',
-      '数据业务',
-      '通话管理',
-      'RIL',
-      'Framework',
-      'ROM 升级',
-    ],
-  };
-
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
       {/* 首屏 */}
       <section className="relative py-6 sm:py-10 lg:py-16">
@@ -251,6 +225,5 @@ export default function HomePage() {
         </FadeUp>
       </section>
     </div>
-    </>
   );
 }
