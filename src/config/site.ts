@@ -14,7 +14,7 @@ export const siteConfig = {
     github: 'https://github.com/dev-ben0915git/telephony-portfolio',
     linkedin: '',
     twitter: '',
-    resumeUrl: '/telephony-portfolio/resume/telephony-resume.pdf',
+    resumeUrl: '/telephony-portfolio/resume/简历_李奔_Tele工程师_6年_GitHub.pdf',
     repoUrl: 'https://github.com/dev-ben0915git/telephony-portfolio',
   },
   categories: [
