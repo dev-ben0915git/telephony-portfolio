@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 
@@ -15,16 +14,35 @@ export function FadeUp({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: '-40px' },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0.01, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0.01, y: 16 }}
-      transition={{ duration: 0.5, ease: 'easeOut', delay }}
       className={clsx('fade-up-safe', className)}
+      style={{
+        opacity: visible ? 1 : 0.01,
+        transform: visible ? 'translateY(0)' : 'translateY(16px)',
+        transition: `opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 500ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

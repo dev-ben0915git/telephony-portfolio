@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { projects } from '@/data/portfolio';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 interface Params {
@@ -27,6 +28,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: p.title,
     description: p.subtitle,
     keywords: [...p.stack, 'Telephony', 'Project'],
+    openGraph: {
+      title: p.title,
+      description: p.subtitle,
+      url: `${siteConfig.url}/projects/${slug}`,
+      type: 'article',
+      siteName: siteConfig.title,
+    },
   };
 }
 

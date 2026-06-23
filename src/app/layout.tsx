@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  alternates: {
+    canonical: siteConfig.url,
+  },
 };
 
 export const viewport: Viewport = {
@@ -45,6 +48,18 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" className="dark">
+      {/* DNS 预连接与资源预加载 */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        as="style"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      />
       <body className="min-h-screen bg-bg-base text-slate-100 antialiased">
         <LayoutShell>{children}</LayoutShell>
       </body>

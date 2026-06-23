@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { skills } from '@/data/portfolio';
 import { DecoderText } from '@/components/effects/DecoderText';
@@ -13,6 +14,19 @@ import { AttachSequenceDiagram } from '@/components/effects/AttachSequenceDiagra
 import dynamic from 'next/dynamic';
 import { ArrowRight, BookOpen, FolderKanban, FileText, ChevronRight } from 'lucide-react';
 
+export const metadata: Metadata = {
+  title: `${siteConfig.author.name} · ${siteConfig.title}`,
+  description:
+    '6 年 Android Telephony 开发工程师作品集，深耕搜网、数据业务、通话管理与 ROM 升级交付，具备从 RIL 到 Framework 的全链路定位与量产闭环能力。',
+  openGraph: {
+    title: `${siteConfig.author.name} · ${siteConfig.title}`,
+    description:
+      '6 年 Android Telephony 开发工程师作品集，深耕搜网、数据业务、通话管理与 ROM 升级交付。',
+    url: siteConfig.url,
+    type: 'website',
+  },
+};
+
 const CellTowerLazy = dynamic(() => import('@/components/effects/CellTowerLazy'), {
   ssr: false,
   loading: () => (
@@ -21,7 +35,33 @@ const CellTowerLazy = dynamic(() => import('@/components/effects/CellTowerLazy')
 });
 
 export default function HomePage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: siteConfig.author.name,
+    url: siteConfig.url,
+    email: siteConfig.author.email,
+    jobTitle: 'Android Telephony 开发工程师',
+    description:
+      '6 年 Android Telephony 开发，深耕搜网、数据业务、通话管理与 ROM 升级交付。',
+    sameAs: [siteConfig.author.github],
+    knowsAbout: [
+      'Android Telephony',
+      '搜网',
+      '数据业务',
+      '通话管理',
+      'RIL',
+      'Framework',
+      'ROM 升级',
+    ],
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
       {/* 首屏 */}
       <section className="relative py-6 sm:py-10 lg:py-16">
@@ -211,5 +251,6 @@ export default function HomePage() {
         </FadeUp>
       </section>
     </div>
+    </>
   );
 }

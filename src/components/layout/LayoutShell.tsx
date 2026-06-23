@@ -1,17 +1,41 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 import { NavBar } from './NavBar';
 import { Footer } from './Footer';
 import { SignalParticles } from '@/components/effects/SignalParticles';
 
-export function LayoutShell({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(false);
-
+/** 检测用户是否偏好减少动效 */
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 50);
-    return () => clearTimeout(t);
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduced(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
   }, []);
+  return reduced;
+}
+
+export function LayoutShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const reduced = usePrefersReducedMotion();
+  const [transitioning, setTransitioning] = useState(false);
+  const prevPathRef = useRef(pathname);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // 路由切换淡入淡出过渡，降低 CLS
+  useEffect(() => {
+    if (prevPathRef.current !== pathname) {
+      setTransitioning(true);
+      // 短暂延迟让旧内容淡出
+      timerRef.current = setTimeout(() => setTransitioning(false), reduced ? 0 : 180);
+      prevPathRef.current = pathname;
+    }
+    return () => clearTimeout(timerRef.current);
+  }, [pathname, reduced]);
 
   return (
     <>
@@ -25,11 +49,23 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
             backgroundSize: '40px 40px',
           }}
         />
-        <SignalParticles />
+        {/* 背景粒子：reduced-motion 时隐藏 */}
+        {!reduced && <SignalParticles />}
       </div>
 
       <NavBar />
-      <main className="relative">{ready ? children : children}</main>
+      <main
+        className="relative"
+        style={{
+          opacity: transitioning ? 0 : 1,
+          transform: transitioning ? 'translateY(6px)' : 'translateY(0)',
+          transition: reduced
+            ? 'none'
+            : 'opacity 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
+        {children}
+      </main>
       <Footer />
     </>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface PacketNode {
   x: number;
@@ -35,6 +35,15 @@ export function SignalParticles() {
     active: false,
   });
   const runningRef = useRef(true);
+
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current!;
@@ -83,7 +92,11 @@ export function SignalParticles() {
     };
     spawnInitial();
 
-    const onResize = () => setSize();
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => setSize(), 200);
+    };
     window.addEventListener('resize', onResize);
 
     const onMove = (e: MouseEvent) => {
@@ -230,16 +243,21 @@ export function SignalParticles() {
       runningRef.current = false;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', onResize);
+      clearTimeout(resizeTimer);
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseleave', onLeave);
     };
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 h-full w-full opacity-70"
-      aria-hidden="true"
-    />
+    <div className="absolute inset-0">
+      {reducedMotion ? null : (
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 h-full w-full opacity-70"
+          aria-hidden="true"
+        />
+      )}
+    </div>
   );
 }

@@ -388,3 +388,124 @@ body {
   line-height: 1;
   padding: 4px 0;
 }
+
+/* ========================================
+   动效系统优化 - 统一缓动与 reduced-motion
+   ======================================== */
+
+/* 统一缓动变量 */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+/* 硬件加速层 - 所有动画元素启用 GPU 合成 */
+.tech-card,
+.core-skill-chip,
+.chip,
+.btn-primary,
+.btn-ghost,
+.fade-up-safe {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* 全局 prefers-reduced-motion 适配 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-up-safe {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .core-skill-chip::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .shine-border::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .sip-signal line {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+}
+
+/* 页面入场动画 */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main {
+  animation: pageEnter var(--duration-slow) var(--ease-out-expo) both;
+}
+
+/* 导航栏滚动渐变增强 */
+header {
+  will-change: backdrop-filter, background-color;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 文章卡片悬停微动效 - 仅 transform/opacity */
+.tech-card {
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              opacity var(--duration-fast) ease;
+}
+.tech-card:hover {
+  transform: translateY(-2px);
+}
+
+/* 技能芯片悬停 - 优化为仅 transform/opacity */
+.core-skill-chip {
+  transition: transform var(--duration-normal) var(--ease-out-expo),
+              opacity var(--duration-fast) ease;
+}
+.core-skill-chip:hover,
+.core-skill-chip.hover-preview {
+  transform: translateY(-2px);
+}
+.core-skill-chip::before {
+  transition: opacity 0.3s ease;
+}
+.core-skill-chip:hover::before,
+.core-skill-chip.hover-preview::before {
+  opacity: 1;
+}
+
+/* 架构层悬停 - 仅 transform */
+.arch-layer {
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+.arch-layer:hover {
+  transform: translateY(-1px);
+}
+
+/* 架构框悬停 - 仅 opacity */
+.arch-box {
+  transition: opacity var(--duration-fast) ease;
+}
+.arch-box:hover {
+  opacity: 1;
+}

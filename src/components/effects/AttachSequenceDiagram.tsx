@@ -28,10 +28,22 @@ const actors = ['UE', 'eNB', 'MME', 'HSS'];
 
 export function AttachSequenceDiagram({ compact = false }: { compact?: boolean }) {
   const [progress, setProgress] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
   const [hoveredEvent, setHoveredEvent] = useState<number | null>(null);
   const ref = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
+    if (reducedMotion) {
+      setProgress(1);
+      return;
+    }
     let raf = 0;
     let t = 0;
     const totalFrames = compact ? 80 : 120;
@@ -42,7 +54,7 @@ export function AttachSequenceDiagram({ compact = false }: { compact?: boolean }
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [compact]);
+  }, [compact, reducedMotion]);
 
   const width = compact ? 520 : 760;
   const height = compact ? 300 : 440;

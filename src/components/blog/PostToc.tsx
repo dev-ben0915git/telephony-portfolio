@@ -25,15 +25,22 @@ export function PostToc({ html }: { html: string }) {
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      let current: string | null = null;
-      for (const it of items) {
-        const el = document.getElementById(it.id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top;
-        if (top < 140) current = it.id;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          let current: string | null = null;
+          for (const it of items) {
+            const el = document.getElementById(it.id);
+            if (!el) continue;
+            const top = el.getBoundingClientRect().top;
+            if (top < 140) current = it.id;
+          }
+          setActive(current);
+          ticking = false;
+        });
       }
-      setActive(current);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

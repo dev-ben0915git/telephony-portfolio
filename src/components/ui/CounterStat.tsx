@@ -12,6 +12,14 @@ export function CounterStat({
   hint?: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
   const [display, setDisplay] = useState('0');
 
   useEffect(() => {
@@ -20,6 +28,11 @@ export function CounterStat({
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
+            if (reducedMotion) {
+              setDisplay(value);
+              obs.disconnect();
+              return;
+            }
             const match = value.match(/^([\d.]+)(.*)$/);
             if (!match) {
               setDisplay(value);

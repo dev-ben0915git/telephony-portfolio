@@ -1,9 +1,18 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function NetworkSearchHero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -209,6 +218,7 @@ export function NetworkSearchHero() {
     };
 
     const animate = () => {
+      if (reducedMotion) return;
       frame++;
       ctx.clearRect(0, 0, size, size);
 
@@ -267,7 +277,15 @@ export function NetworkSearchHero() {
 
   return (
     <div className="relative flex h-[280px] w-[280px] items-center justify-center">
-      <canvas ref={canvasRef} className="rounded-full" />
+      {!reducedMotion && <canvas ref={canvasRef} className="rounded-full" />}
+      {reducedMotion && (
+        <div className="flex h-[240px] w-[240px] items-center justify-center rounded-full border border-accent/30 bg-accent/5">
+          <svg viewBox="0 0 24 24" className="h-16 w-16 text-accent/60" fill="none" stroke="currentColor" strokeWidth="1.2">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+            <circle cx="12" cy="9" r="2.5" />
+          </svg>
+        </div>
+      )}
       {/* 外圈装饰 */}
       <div className="pointer-events-none absolute inset-0 -z-10 rounded-full border border-accent/10" />
       <div className="pointer-events-none absolute -inset-4 -z-10 rounded-full bg-accent/5 blur-2xl" />

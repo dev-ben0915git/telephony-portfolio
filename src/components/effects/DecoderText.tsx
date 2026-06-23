@@ -18,10 +18,22 @@ export function DecoderText({
   startDelay = 120,
 }: DecoderTextProps) {
   const [display, setDisplay] = useState(text);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const frame = useRef(0);
 
   useEffect(() => {
+    if (reducedMotion) {
+      setDisplay(text);
+      return;
+    }
     setDisplay(' '.repeat(text.length));
     frame.current = 0;
     const startTimer = setTimeout(() => {
@@ -52,7 +64,7 @@ export function DecoderText({
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text]);
+  }, [text, reducedMotion]);
 
   return (
     <span className={className} aria-label={text}>
