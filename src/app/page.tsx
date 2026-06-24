@@ -38,10 +38,10 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
       {/* 首屏 */}
-      <section className="relative py-6 sm:py-10 lg:py-16">
-        <div className="grid items-center gap-6 lg:grid-cols-[1.25fr_0.85fr] lg:gap-10">
+      <section className="relative py-10 sm:py-14 lg:py-20">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.25fr_0.85fr] lg:gap-12">
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
               <span className="relative inline-flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
@@ -60,7 +60,7 @@ export default function HomePage() {
               />
             </h1>
 
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-slate-300 sm:text-base sm:leading-7">
+            <p className="mt-5 max-w-xl text-[15px] leading-7 text-slate-300 sm:text-base sm:leading-7">
               <span className="font-medium text-white">6 年 Android Telephony 开发</span>
               <span className="mx-2 text-accent/70">/</span>
               深耕搜网、数据业务、通话管理与 ROM 升级交付，具备从
@@ -69,7 +69,7 @@ export default function HomePage() {
             </p>
 
             {/* 行动入口 */}
-            <div className="mt-5 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <Link href="/projects" className="btn-primary">
                 <FolderKanban className="h-4 w-4" /> 项目经历
               </Link>
@@ -82,9 +82,9 @@ export default function HomePage() {
             </div>
 
             {/* 核心技术栈 */}
-            <div className="mt-5 max-w-2xl">
-              <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-slate-500">
-                <span className="h-px w-8 bg-accent/40" />
+            <div className="mt-7 max-w-2xl">
+              <div className="mb-2.5 flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-slate-400">
+                <span className="h-px w-8 bg-accent/50" />
                 core stack
               </div>
               <div className="flex flex-wrap gap-2 text-xs">
@@ -104,9 +104,11 @@ export default function HomePage() {
             <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-accent/5 blur-3xl" />
           </div>
         </div>
+      </section>
 
-        {/* 量化数据 */}
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:mt-8">
+      {/* 量化数据 — 独立区域 */}
+      <section className="border-t border-bg-line/40 py-8 sm:py-10">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {siteConfig.stats.map((s) => (
             <CounterStat key={s.label} label={s.label} value={s.value} hint={s.hint} />
           ))}
@@ -114,9 +116,9 @@ export default function HomePage() {
       </section>
 
       {/* 快速入口条 */}
-      <section className="border-y border-bg-line/60 py-4">
+      <section className="border-b border-bg-line/40 py-4">
         <div className="flex flex-wrap items-center gap-3 text-sm">
-          <span className="text-xs uppercase tracking-[0.2em] text-slate-500">快速入口</span>
+          <span className="text-xs uppercase tracking-[0.2em] text-slate-400">快速入口</span>
           <Link href="/projects" className="inline-flex items-center gap-1 text-slate-300 transition hover:text-accent">
             <ChevronRight className="h-3.5 w-3.5" /> 项目经历
           </Link>
@@ -133,7 +135,7 @@ export default function HomePage() {
       </section>
 
       {/* 技能快照 */}
-      <section className="py-8 sm:py-10">
+      <section className="border-t border-bg-line/40 py-10 sm:py-14">
         <SectionHeader
           eyebrow="skills snapshot"
           title="四大方向 · 技能雷达"
@@ -160,7 +162,7 @@ export default function HomePage() {
       </section>
 
       {/* SIP 时序示意 */}
-      <section className="py-8 sm:py-10">
+      <section className="border-t border-bg-line/40 py-10 sm:py-14">
         <SectionHeader
           eyebrow="attach sequence"
           title="LTE Attach · 随机接入与承载建立"
@@ -174,7 +176,7 @@ export default function HomePage() {
       </section>
 
       {/* 基站可视化 */}
-      <section className="py-8 sm:py-10">
+      <section className="border-t border-bg-line/40 py-10 sm:py-14">
         <SectionHeader
           eyebrow="infrastructure"
           title="BTS / gNB · 蜂窝基站可视化"
@@ -186,7 +188,7 @@ export default function HomePage() {
       </section>
 
       {/* 内容入口 */}
-      <section className="grid gap-6 py-8 sm:py-10 md:grid-cols-2">
+      <section className="grid gap-6 border-t border-bg-line/40 py-10 sm:py-14 md:grid-cols-2">
         <FadeUp>
           <Link href="/blog" className="tech-card group block h-full">
             <div className="flex items-center justify-between">

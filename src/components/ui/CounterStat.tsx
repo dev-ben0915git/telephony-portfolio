@@ -63,12 +63,14 @@ export function CounterStat({
   }, [value]);
 
   return (
-    <div ref={ref} className="tech-card">
-      <div className="text-sm text-slate-400">{label}</div>
-      <div className="mt-2 text-3xl font-semibold tracking-tight text-accent glow-text">
+    <div ref={ref} className="group relative overflow-hidden rounded-xl border border-bg-line bg-bg-card/60 p-5 transition-all duration-300 hover:border-accent/40 hover:bg-bg-card/80">
+      {/* 顶部装饰线 */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="text-sm font-medium text-slate-300">{label}</div>
+      <div className="mt-2 text-3xl font-bold tracking-tight text-accent glow-text">
         {display}
       </div>
-      {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      {hint && <div className="mt-1.5 text-xs leading-relaxed text-slate-500">{hint}</div>}
     </div>
   );
 }
