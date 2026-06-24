@@ -2,7 +2,7 @@
 title: "Android 运营商名称显示机制详解"
 date: "2025-06-24"
 summary: "从 ServiceStateTracker.updateCarrierDisplayName() 入口，完整梳理 Legacy 机制下运营商名称显示的全流程：SPN/PLMN 来源优先级、SIM rule 显示规则、漫游/飞行模式/WFC/卫星等场景处理，以及 Intent 广播与上层消费。"
-category: "data-service"
+category: "network-search"
 tags: ["ServiceStateTracker", "SPN", "PLMN", "SIM", "RIL", "Framework", "CarrierConfig", "WFC", "漫游"]
 featured: true
 ---

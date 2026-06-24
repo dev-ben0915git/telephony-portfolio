@@ -51,65 +51,26 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   const processed = await remark().use(remarkGfm).use(remarkHtml, { sanitize: false }).process(content);
   let html = String(processed);
 
-  // Inject ids onto h2/h3 for TOC scrolling (avoid regex backref in source for SWC)
+  // Inject ids onto h2/h3 for TOC scrolling
   const slugCounts2 = new Map<string, number>();
-  const re1 = /<h2>/gi;
-  const re2 = /<\/h2>/gi;
-  const re3 = /<h3>/gi;
-  const re4 = /<\/h3>/gi;
+  const headingRe = /<h([23])>([\s\S]*?)<\/h\1>/gi;
   const parts: string[] = [];
   let cursor = 0;
-  let prev: RegExpExecArray | null = null;
-  while (true) {
-    const m1 = re1.exec(html);
-    re1.lastIndex = m1 ? m1.index + m1[0].length : re1.lastIndex;
-    const m2 = re2.exec(html);
-    re2.lastIndex = m2 ? m2.index + m2[0].length : re2.lastIndex;
-    const m3 = re3.exec(html);
-    re3.lastIndex = m3 ? m3.index + m3[0].length : re3.lastIndex;
-    const m4 = re4.exec(html);
-    re4.lastIndex = m4 ? m4.index + m4[0].length : re4.lastIndex;
-    const candidates = [
-      { kind: 0, m: m1 },
-      { kind: 1, m: m2 },
-      { kind: 2, m: m3 },
-      { kind: 3, m: m4 },
-    ].filter((x) => x.m && x.m.index >= cursor);
-    if (candidates.length === 0) break;
-    candidates.sort((a, b) => (a.m as RegExpExecArray).index - (b.m as RegExpExecArray).index);
-    const chosen = candidates[0];
-    if (prev == null && chosen.kind % 2 === 1) {
-      prev = null;
-      parts.push(html.slice(cursor, (chosen.m as RegExpExecArray).index + (chosen.m as RegExpExecArray)[0].length));
-      cursor = (chosen.m as RegExpExecArray).index + (chosen.m as RegExpExecArray)[0].length;
-      continue;
-    }
-    if (prev == null) {
-      // open tag
-      prev = chosen.m;
-      parts.push(html.slice(cursor, (chosen.m as RegExpExecArray).index + (chosen.m as RegExpExecArray)[0].length));
-      cursor = (chosen.m as RegExpExecArray).index + (chosen.m as RegExpExecArray)[0].length;
-    } else {
-      const openIndex = prev.index;
-      const openEnd = prev.index + prev[0].length;
-      const inner = html.slice(openEnd, (chosen.m as RegExpExecArray).index);
-      const plain = inner.replace(/<[^>]+>/g, '').trim();
-      let slug = plain
-        .toLowerCase()
-        .replace(/[^\u4e00-\u9fa5a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-      const count = (slugCounts2.get(slug) || 0) + 1;
-      slugCounts2.set(slug, count);
-      if (count > 1) slug = `${slug}-${count}`;
-      const openTag = html.slice(openIndex, openEnd);
-      const newOpen = openTag.replace(/^<h/, '<h').replace(/^<(h[23])/, (_, t) => `<${t} id="${slug}"`);
-      parts.push(newOpen);
-      parts.push(inner);
-      parts.push((chosen.m as RegExpExecArray)[0]);
-      cursor = (chosen.m as RegExpExecArray).index + (chosen.m as RegExpExecArray)[0].length;
-      prev = null;
-    }
-    if (cursor >= html.length) break;
+  let match: RegExpExecArray | null;
+  while ((match = headingRe.exec(html)) !== null) {
+    const tagName = `h${match[1]}`;
+    const inner = match[2];
+    const plain = inner.replace(/<[^>]+>/g, '').trim();
+    let slug = plain
+      .toLowerCase()
+      .replace(/[^\u4e00-\u9fa5a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+    const count = (slugCounts2.get(slug) || 0) + 1;
+    slugCounts2.set(slug, count);
+    if (count > 1) slug = `${slug}-${count}`;
+    parts.push(html.slice(cursor, match.index));
+    parts.push(`<${tagName} id="${slug}">${inner}</${tagName}>`);
+    cursor = match.index + match[0].length;
   }
   if (cursor < html.length) parts.push(html.slice(cursor));
   if (parts.length > 0) html = parts.join('');

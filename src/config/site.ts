@@ -17,8 +17,7 @@ export const siteConfig = {
     repoUrl: 'https://github.com/dev-ben0915git/telephony-portfolio',
   },
   categories: [
-    { key: 'network-search', label: '搜网 / 驻网', color: 'text-tech-yellow' },
-    { key: 'data-service', label: '数据业务', color: 'text-tech-green' },
+    { key: 'network-search', label: '搜网', color: 'text-tech-yellow' },
     { key: 'call-module', label: '通话管理', color: 'text-tech-purple' },
     { key: 'radio-aidl', label: 'Radio AIDL', color: 'text-tech-orange' },
     { key: 'certification', label: '认证交付', color: 'text-tech-pink' },
