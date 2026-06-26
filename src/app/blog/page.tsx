@@ -16,7 +16,7 @@ export default function BlogListPage() {
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <SectionHeader
         eyebrow="blog"
-        title="技术博客 · 五大分类"
+        title="技术博客 · 八大分类"
         description="Telephony 方向一手实战笔记：代码片段、抓包分析、量化数据。"
       />
 

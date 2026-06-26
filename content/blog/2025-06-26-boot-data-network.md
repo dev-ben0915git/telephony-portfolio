@@ -2,7 +2,7 @@
 title: "Android 开机数据网络建立全流程分析"
 date: "2025-06-26"
 summary: "从 SIM 卡加载完成到数据链路完全就绪的完整流程分析，涵盖 DataProfile 设置、DataNetworkController 网络请求评估、数据业务激活（RIL_REQUEST_SETUP_DATA_CALL）以及链路信息更新四大阶段。"
-category: "network-search"
+category: "data-service"
 tags: ["DataProfileManager", "DataNetworkController", "DataNetwork", "APN", "RIL", "PDN", "ConnectivityService", "TelephonyNetworkAgent", "DataServiceManager", "CellularDataService"]
 featured: true
 ---

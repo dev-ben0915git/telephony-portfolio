@@ -197,7 +197,7 @@ export default function HomePage() {
             </div>
             <div className="mt-2 text-xl font-semibold text-white">技术博客</div>
             <div className="mt-2 text-sm leading-6 text-slate-400">
-              搜网、数据业务、通话管理、Radio AIDL、运营商认证五大分类，沉淀 ROM 升级与量产问题闭环经验。
+              搜网、数据、短信、卡账户、通话、IMS、卫星、源码环境八大分类，沉淀 ROM 升级与量产问题闭环经验。
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {['搜网', '数据业务', '通话管理', 'Radio AIDL', '认证'].map((t) => (

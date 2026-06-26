@@ -18,9 +18,13 @@ export const siteConfig = {
   },
   categories: [
     { key: 'network-search', label: '搜网', color: 'text-tech-yellow' },
-    { key: 'call-module', label: '通话管理', color: 'text-tech-purple' },
-    { key: 'radio-aidl', label: 'Radio AIDL', color: 'text-tech-orange' },
-    { key: 'certification', label: '认证交付', color: 'text-tech-pink' },
+    { key: 'data-service', label: '数据', color: 'text-tech-blue' },
+    { key: 'sms', label: '短信', color: 'text-tech-rose' },
+    { key: 'sim-account', label: '卡账户', color: 'text-tech-amber' },
+    { key: 'call-module', label: '通话', color: 'text-tech-purple' },
+    { key: 'ims', label: 'IMS', color: 'text-tech-cyan' },
+    { key: 'satellite', label: '卫星', color: 'text-tech-violet' },
+    { key: 'source-env', label: '源码环境', color: 'text-tech-green' },
   ],
   nav: [
     { key: 'home', label: '首页', href: '/' },

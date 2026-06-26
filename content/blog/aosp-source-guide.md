@@ -2,7 +2,7 @@
 title: "技术博客源码环境搭建指南"
 date: "2025-06-22"
 summary: "本博客所有技术分析文章均基于 AOSP（Android Open Source Project）源码。本文档列出所需的 7 个源码仓库及其克隆命令，方便读者搭建本地源码环境，对照博客内容进行阅读和验证。"
-category: "network-search"
+category: "source-env"
 tags: ["AOSP", "源码环境", "Telephony", "RIL", "Framework", "IMS"]
 featured: false
 ---
