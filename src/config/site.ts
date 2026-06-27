@@ -20,7 +20,7 @@ export const siteConfig = {
     { key: 'network-search', label: '搜网', color: 'text-tech-yellow' },
     { key: 'data-service', label: '数据', color: 'text-tech-blue' },
     { key: 'sms', label: '短信', color: 'text-tech-rose' },
-    { key: 'sim-account', label: '卡账户', color: 'text-tech-amber' },
+    { key: 'sim-card', label: 'sim卡', color: 'text-tech-amber' },
     { key: 'call-module', label: '通话', color: 'text-tech-purple' },
     { key: 'ims', label: 'IMS', color: 'text-tech-cyan' },
     { key: 'satellite', label: '卫星', color: 'text-tech-violet' },

@@ -235,10 +235,13 @@ body {
   margin: 1.2em 0;
 }
 .prose-tech table {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.2em 0;
   font-size: 0.9em;
+  display: block;
+  overflow-x: auto;
 }
 .prose-tech th,
 .prose-tech td {
