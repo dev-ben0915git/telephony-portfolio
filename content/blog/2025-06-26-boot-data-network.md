@@ -35,7 +35,7 @@ featured: true
 ```
 开机 → SIM 卡加载完成
   ↓
-步骤 1: DataProfile 设置就绪
+DataProfile 设置就绪
   ├── DataProfileManager.updateDataProfiles()
   ├── 读取 APN 数据库 → 创建 DataProfile 列表
   ├── 设置 preferredDataProfile / IA DataProfile
@@ -46,14 +46,14 @@ featured: true
   ↓
 网络注册完成（ServiceState 变化）
   ↓
-步骤 2: DataNetworkController 评估网络建立
+DataNetworkController 评估网络建立
   ├── shouldReevaluateNetworkRequests() 判断
   ├── 网络请求分组（getGroupedUnsatisfiedNetworkRequests）
   ├── 选择 DataProfile（getDataProfileForNetworkRequest）
   └── 创建 DataNetwork 对象
 
   ↓
-步骤 3: 激活数据业务
+激活数据业务
   ├── DataNetwork.setupData()
   ├── DataServiceManager.setupDataCall()
   ├── CellularDataService.setupDataCall()
@@ -63,7 +63,7 @@ featured: true
   └── 进入 Connected 状态
 
   ↓
-步骤 4: 更新数据链路信息
+更新数据链路信息
   ├── RIL_UNSOL_DATA_CALL_LIST_CHANGED（Modem 上报）
   ├── DataNetwork.onDataStateChanged()
   ├── updateDataNetwork() 更新 LinkProperties
@@ -286,7 +286,7 @@ Modem 上报 RIL_UNSOL_DATA_CALL_LIST_CHANGED
 
 ---
 
-## 第 4 章：步骤 1 —— DataProfile 设置就绪
+## 第 4 章：DataProfile 设置就绪
 
 ### 4.1 SIM 卡加载完成触发
 
@@ -415,7 +415,7 @@ mDataProfileManagerCallbacks.forEach(callback -> callback.invokeFromExecutor(
 
 ---
 
-## 第 5 章：步骤 2 —— DataNetworkController 评估网络建立
+## 第 5 章：DataNetworkController 评估网络建立
 
 ### 5.1 触发时机：ServiceState 变化
 
@@ -499,7 +499,7 @@ mDataNetworkList.add(new DataNetwork(mPhone, mFeatureFlags, getLooper(),
 
 ---
 
-## 第 6 章：步骤 3 —— 生成 DataNetwork，激活数据业务
+## 第 6 章：生成 DataNetwork，激活数据业务
 
 ### 6.1 DataNetwork.setupData() 流程
 
@@ -656,7 +656,7 @@ public void onConnected(@NonNull DataNetwork dataNetwork) {
 
 ---
 
-## 第 7 章：步骤 4 —— 更新数据链路相关信息
+## 第 7 章：更新数据链路相关信息
 
 ### 7.1 Modem 上报 RIL_UNSOL_DATA_CALL_LIST_CHANGED
 
