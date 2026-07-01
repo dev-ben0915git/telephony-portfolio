@@ -19,6 +19,7 @@ export const siteConfig = {
   categories: [
     { key: 'network-search', label: '搜网', color: 'text-tech-yellow' },
     { key: 'data-service', label: '数据', color: 'text-tech-blue' },
+    { key: 'network-management', label: '网络管理', color: 'text-tech-teal' },
     { key: 'sms', label: '短信', color: 'text-tech-rose' },
     { key: 'sim-card', label: 'sim卡', color: 'text-tech-amber' },
     { key: 'call-module', label: '通话', color: 'text-tech-purple' },
