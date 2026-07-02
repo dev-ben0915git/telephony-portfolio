@@ -17,7 +17,7 @@ export default function BlogListPage() {
       <SectionHeader
         eyebrow="blog"
         title="技术博客 · 八大分类"
-        description="Telephony 方向一手实战笔记：代码片段、抓包分析、量化数据。"
+        description="拥抱AI，梳理AOSP 原生Telephony流程"
       />
 
       <BlogListClient posts={posts} />
